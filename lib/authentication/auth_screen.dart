@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:foodpand_sellers_app/authentication/login.dart';
+import 'package:foodpand_sellers_app/authentication/register.dart';
 
 class AuthScreen extends StatefulWidget {
-  const AuthScreen({ Key? key }) : super(key: key);
+  const AuthScreen({Key? key}) : super(key: key);
 
   @override
   _AuthScreenState createState() => _AuthScreenState();
@@ -10,9 +12,73 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome'),
+    // BottomNavigatorの上版みたいなやつ
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          appBar: AppBar(
+        automaticallyImplyLeading: false,
+        // AppBarの背景
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+            colors: [
+              Colors.cyan,
+              Colors.amber,
+            ],
+            begin: FractionalOffset(0, 0),
+            end: FractionalOffset(1, 0), //TopRight
+            stops: [0, 1],
+            tileMode: TileMode.clamp,
+          )),
+        ),
+        title: const Text(
+          'iFood',
+          style: TextStyle(
+            fontSize: 60,
+            color: Colors.white,
+            fontFamily: 'Lobster',
+          )),
+        centerTitle: true,
+        bottom: const TabBar(
+          tabs: [
+            Tab(
+              icon: Icon(
+                Icons.lock,
+                color: Colors.white,
+              ),
+              text: 'Login',
+            ),
+            Tab(
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              text: 'Register ',
+            ),
+          ],
+          indicatorColor: Colors.white38,
+          indicatorWeight: 6,
+        )
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Colors.amber,
+              Colors.cyan,
+            ]
+          )
+        ),
+        child: const TabBarView(
+          children: [
+            LoginScreen(),
+            RegisterScreen(),
+          ]
+        )
+      ),
       ),
     );
   }
