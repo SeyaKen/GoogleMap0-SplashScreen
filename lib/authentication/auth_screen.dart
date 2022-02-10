@@ -20,17 +20,7 @@ class _AuthScreenState extends State<AuthScreen> {
         automaticallyImplyLeading: false,
         // AppBarの背景
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            colors: [
-              Colors.cyan,
-              Colors.amber,
-            ],
-            begin: FractionalOffset(0, 0),
-            end: FractionalOffset(1, 0), //TopRight
-            stops: [0, 1],
-            tileMode: TileMode.clamp,
-          )),
+          color: Colors.red,
         ),
         title: const Text(
           'iFood',
@@ -62,16 +52,7 @@ class _AuthScreenState extends State<AuthScreen> {
         )
       ),
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Colors.amber,
-              Colors.cyan,
-            ]
-          )
-        ),
+        color: Colors.white,
         child: const TabBarView(
           children: [
             LoginScreen(),

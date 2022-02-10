@@ -108,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         print('clicked');
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.amber,
+                          primary: Colors.blue,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           )),
@@ -123,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         fontWeight: FontWeight.bold,
                       )),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.cyanAccent,
+                    primary: Colors.red,
                     padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                   ),
                   onPressed: () {
