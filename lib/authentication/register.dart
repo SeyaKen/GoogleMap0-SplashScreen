@@ -144,7 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         fontWeight: FontWeight.bold,
                       )),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    primary: const Color(0xffe83434),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 10),
                   ),

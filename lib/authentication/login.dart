@@ -26,8 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Image.asset(
-                'images/seller.png',
-                height: 270,
+                'images/demaekan1.png',
+                height: 150,
               ),
             ),
           ),
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold,
                       )),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    primary: const Color(0xffe83434),
                     padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                   ),
                   onPressed: () {

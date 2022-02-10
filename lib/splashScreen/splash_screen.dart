@@ -12,7 +12,7 @@ class MySplashScreen extends StatefulWidget {
 
 class _MySplashScreenState extends State<MySplashScreen> {
   starttimer() {
-    Timer(const Duration(seconds: 1), () async {
+    Timer(const Duration(seconds: 3), () async {
       Navigator.push(
           context, MaterialPageRoute(builder: (c) => const AuthScreen()));
     });
@@ -29,25 +29,21 @@ class _MySplashScreenState extends State<MySplashScreen> {
   Widget build(BuildContext context) {
     return Material(
         child: Container(
-            color: Colors.white,
+            color: const Color(0xffe83434),
             child: Center(
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('images/splash.jpg'),
-                const SizedBox(
-                  height: 10,
-                ),
+                Image.asset('images/demaekan.jpg'),
                 const Padding(
                     padding: EdgeInsets.all(18.0),
                     child: Text(
-                      'Sell Food Online',
+                      'デリバリーなら出前館',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 40,
-                          fontFamily: 'Signatra',
-                          letterSpacing: 3,
+                          color: Colors.white,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w900,
                         )))
               ],
             ))));

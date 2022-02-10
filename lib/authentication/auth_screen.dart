@@ -20,15 +20,16 @@ class _AuthScreenState extends State<AuthScreen> {
         automaticallyImplyLeading: false,
         // AppBarの背景
         flexibleSpace: Container(
-          color: Colors.red,
+          color: const Color(0xffe83434),
         ),
-        title: const Text(
-          'iFood',
-          style: TextStyle(
-            fontSize: 60,
-            color: Colors.white,
-            fontFamily: 'Lobster',
-          )),
+        title: SizedBox(
+          height: 100,
+          width: 100,
+          child: Image.asset(
+            'images/demaekan.jpg',
+            fit: BoxFit.fill,
+          ),
+        ),
         centerTitle: true,
         bottom: const TabBar(
           tabs: [
