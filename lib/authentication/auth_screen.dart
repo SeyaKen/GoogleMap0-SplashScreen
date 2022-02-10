@@ -38,14 +38,26 @@ class _AuthScreenState extends State<AuthScreen> {
                 Icons.lock,
                 color: Colors.white,
               ),
-              text: 'Login',
+              child: Text(
+                'ログイン',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                )
+              ),
             ),
             Tab(
               icon: Icon(
                 Icons.person,
                 color: Colors.white,
               ),
-              text: 'Register ',
+              child: Text(
+                '新規登録',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                )
+              ),
             ),
           ],
           indicatorColor: Colors.white38,

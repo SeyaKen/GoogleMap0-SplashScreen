@@ -115,37 +115,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextField(
                   data: Icons.person,
                   controller: nameController,
-                  hintText: 'Name',
+                  hintText: '名前',
                   isObsecre: false,
                 ),
                 CustomTextField(
                   data: Icons.email,
                   controller: emailController,
-                  hintText: 'Email',
+                  hintText: 'メールアドレス',
                   isObsecre: false,
                 ),
                 CustomTextField(
                   data: Icons.lock,
                   controller: passwordController,
-                  hintText: 'Password',
+                  hintText: 'パスワード',
                   isObsecre: true,
                 ),
                 CustomTextField(
                   data: Icons.lock,
                   controller: confirmPasswordController,
-                  hintText: 'Confirm Password',
+                  hintText: 'パスワード(確認用)',
                   isObsecre: true,
                 ),
                 CustomTextField(
                   data: Icons.phone,
                   controller: phoneController,
-                  hintText: 'Phone',
+                  hintText: '電話番号',
                   isObsecre: false,
                 ),
                 CustomTextField(
                   data: Icons.my_location,
                   controller: locationController,
-                  hintText: 'Cafe/Restaunrant Adress',
+                  hintText: 'お店の住所',
                   isObsecre: false,
                 ),
                 Container(
@@ -154,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     alignment: Alignment.center,
                     child: ElevatedButton.icon(
                       label: const Text(
-                        'Get my Current Location',
+                        '現在地を取得する',
                         style: TextStyle(color: Colors.white),
                       ),
                       icon: const Icon(
@@ -175,9 +175,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 30,
                 ),
                 ElevatedButton(
-                  child: const Text('Sign up',
+                  child: const Text('新規登録',
                       style: TextStyle(
                         color: Colors.white,
+                        fontSize: 17,
                         fontWeight: FontWeight.bold,
                       )),
                   style: ElevatedButton.styleFrom(
@@ -185,9 +186,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.36,
-                        vertical: 17
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 140,
+                        vertical: 15
                       ),
                   ),
                   onPressed: () {

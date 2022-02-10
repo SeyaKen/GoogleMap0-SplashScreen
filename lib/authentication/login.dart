@@ -38,13 +38,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 CustomTextField(
                   data: Icons.email,
                   controller: emailController,
-                  hintText: 'Email',
+                  hintText: 'メールアドレス',
                   isObsecre: false,
                 ),
                 CustomTextField(
                   data: Icons.lock,
                   controller: passwordController,
-                  hintText: 'Password',
+                  hintText: 'パスワード',
                   isObsecre: true,
                 ),
                ],
@@ -55,9 +55,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 ElevatedButton(
                   child: const Text(
-                      'Login',
+                      'ログイン',
                       style: TextStyle(
                         color: Colors.white,
+                        fontSize: 17,
                         fontWeight: FontWeight.bold,
                       )),
                   style: ElevatedButton.styleFrom(
@@ -65,9 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     primary: const Color(0xffe83434),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.36,
-                      vertical: 17
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 140,
+                      vertical: 15
                     ),
                   ),
                   onPressed: () {
