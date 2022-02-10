@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:foodpand_sellers_app/widget/custom_text_field.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -25,6 +27,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   XFile? imageXFile;
   final ImagePicker _picker = ImagePicker();
 
+  //
+  Position? position;
+  List<Placemark>? placeMarks;
+
   // voidとは
   // => returnがない事は決まってるから、わかりやすく印を付けとく
   // つまり何も返ってこない
@@ -39,6 +45,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() {
       imageXFile;
     });
+  }
+
+  // 現在地取得のための関数
+  getCurrentLocation() async {
+    // この1行がないとIOSだと機能しない
+    await Geolocator.requestPermission();
+
+    Position newPosition = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    position = newPosition;
+    placeMarks = await placemarkFromCoordinates(
+      position!.latitude,
+      position!.longitude,
+    );
+
+    print('プレースマークス');
+    print(placeMarks);
+
+    Placemark pMark = placeMarks![0];
+
+    print('pマーク');
+    print(placeMarks);
+
+    String completeAddress =
+        '${pMark.subThoroughfare} ${pMark.thoroughfare}, ${pMark.subLocality} ${pMark.locality}, ${pMark.subAdministrativeArea}, ${pMark.administrativeArea} ${pMark.postalCode}, ${pMark.country}';
+
+    print('住所？');
+    print(completeAddress);
+
+    locationController.text = completeAddress;
   }
 
   @override
@@ -58,7 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // CircleAvatarはbackgroundImage
             // に指定したのを、丸くしてくれるやつ？
             child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.grey,
                 radius: MediaQuery.of(context).size.width * 0.20,
                 backgroundImage: imageXFile == null
                     ? null
@@ -67,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ? Icon(
                         Icons.add_photo_alternate,
                         size: MediaQuery.of(context).size.width * 0.2,
-                        color: Colors.grey,
+                        color: Colors.white,
                       )
                     : null)),
         const SizedBox(height: 10),
@@ -126,6 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         color: Colors.white,
                       ),
                       onPressed: () {
+                        getCurrentLocation();
                         print('clicked');
                       },
                       style: ElevatedButton.styleFrom(
@@ -145,8 +183,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       )),
                   style: ElevatedButton.styleFrom(
                     primary: const Color(0xffe83434),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.36,
+                        vertical: 17
+                      ),
                   ),
                   onPressed: () {
                     print('clicked!');

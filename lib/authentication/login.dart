@@ -61,8 +61,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold,
                       )),
                   style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                     primary: const Color(0xffe83434),
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.36,
+                      vertical: 17
+                    ),
                   ),
                   onPressed: () {
                     print('clicked!');
