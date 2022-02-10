@@ -27,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   XFile? imageXFile;
   final ImagePicker _picker = ImagePicker();
 
-  //
+  // 現在地取得のための変数
   Position? position;
   List<Placemark>? placeMarks;
 
@@ -147,7 +147,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: locationController,
                   hintText: 'Cafe/Restaunrant Adress',
                   isObsecre: false,
-                  enabled: false,
                 ),
                 Container(
                     width: 400,
