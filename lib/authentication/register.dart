@@ -20,8 +20,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController locationController = TextEditingController();
 
+  // ImagePickerから取り出すファイルが
+  // XFile形式だからここでXFile形式にしておく。
   XFile? imageXFile;
   final ImagePicker _picker = ImagePicker();
+
+  // voidとは
+  // => returnがない事は決まってるから、わかりやすく印を付けとく
+  // つまり何も返ってこない
+  // Future<戻り値>を指定している
+  Future<void> _getImage() async {
+    // 「_」はプライベート変数を表す
+    // プライベート変数にすることで、
+    // 外部からのアクセスを出来する
+    // プライベート変数はこのように
+    // 関数(function)を使って値を変更する。
+    imageXFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      imageXFile;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +52,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       children: [
         const SizedBox(height: 10),
         InkWell(
+            onTap: () {
+              _getImage();
+            },
             // CircleAvatarはbackgroundImage
             // に指定したのを、丸くしてくれるやつ？
             child: CircleAvatar(
@@ -124,7 +145,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       )),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.red,
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 10),
                   ),
                   onPressed: () {
                     print('clicked!');
