@@ -87,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       // minはデフォルト上（もしくは下）詰め
       mainAxisSize: MainAxisSize.max,
       children: [
-        const SizedBox(height: 10),
+        const SizedBox(height: 30),
         InkWell(
             onTap: () {
               _getImage();
