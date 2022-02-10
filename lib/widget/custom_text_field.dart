@@ -6,7 +6,8 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.data,
     this.hintText,
-    this.isObsecre
+    this.isObsecre,
+    this.enabled,
   }) : super(key: key);
 
   final TextEditingController? controller;
