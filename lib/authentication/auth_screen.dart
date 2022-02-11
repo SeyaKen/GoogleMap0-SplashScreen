@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodpand_sellers_app/authentication/login.dart';
 import 'package:foodpand_sellers_app/authentication/register.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -68,7 +67,7 @@ class _AuthScreenState extends State<AuthScreen> {
         color: Colors.white,
         child: const TabBarView(
           children: [
-            LoginScreen(),
+            RegisterScreen(),
             RegisterScreen(),
           ]
         )
