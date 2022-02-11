@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:foodpand_sellers_app/widget/custom_text_field.dart';
+import 'package:foodpand_sellers_app/widget/error_dialog.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
@@ -76,6 +77,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
     print(completeAddress);
 
     locationController.text = completeAddress;
+  }
+
+  Future<void> formValidate() async {
+    if (imageXFile == null) {
+      showDialog(
+          context: context,
+          builder: (c) {
+            return const ErrorDialog(
+              message: '画像を選択してください。',
+            );
+          });
+    } else {
+      if (passwordController.text == confirmPasswordController.text) {
+        // 画像をアップロードする
+
+        if (passwordController.text.isNotEmpty
+        && emailController.text.isNotEmpty
+        && nameController.text.isNotEmpty
+        && phoneController.text.isNotEmpty
+        && locationController.text.isNotEmpty) {
+          
+        }
+      } else {
+        showDialog(
+            context: context,
+            builder: (c) {
+              return const ErrorDialog(
+                message: 'パスワードが一致していません。',
+              );
+            });
+      }
+    }
   }
 
   @override
@@ -155,18 +188,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: ElevatedButton.icon(
                       label: const Text(
                         '現在地を取得する',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Color(0xffe83434)),
                       ),
                       icon: const Icon(
                         Icons.location_on,
-                        color: Colors.white,
+                        color: Color(0xffe83434),
                       ),
                       onPressed: () {
                         getCurrentLocation();
                         print('clicked');
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.blue,
+                          side: const BorderSide(
+                            width: 1,
+                            color: Color(0xffe83434),
+                          ),
+                          primary: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           )),
@@ -187,11 +224,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 140,
-                        vertical: 15
-                      ),
+                        horizontal: 140, vertical: 15),
                   ),
                   onPressed: () {
+                    formValidate();
                     print('clicked!');
                   },
                 ),

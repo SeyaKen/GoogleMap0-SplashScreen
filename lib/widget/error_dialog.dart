@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class ErrorDialog extends StatelessWidget {
   const ErrorDialog({Key? key, this.message}) : super(key: key);
@@ -6,20 +6,15 @@ class ErrorDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      key: key,
-      content: const Text('message!'),
-      actions: [
-        ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Center(
-              child: Text('OK'),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.red,
-            ))
+    return CupertinoAlertDialog(
+      title: Text(message!),
+      actions: <CupertinoDialogAction>[
+        CupertinoDialogAction(
+          child: const Text('閉じる'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        )
       ],
     );
   }
