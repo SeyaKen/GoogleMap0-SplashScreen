@@ -7,6 +7,7 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
+      key: key,
       title: Text(message!),
       actions: <CupertinoDialogAction>[
         CupertinoDialogAction(

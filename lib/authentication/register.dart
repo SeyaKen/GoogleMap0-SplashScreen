@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:foodpand_sellers_app/widget/custom_text_field.dart';
 import 'package:foodpand_sellers_app/widget/error_dialog.dart';
+import 'package:foodpand_sellers_app/widget/loading_dialog.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as fStorage;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -31,6 +33,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   // 現在地取得のための変数
   Position? position;
   List<Placemark>? placeMarks;
+
+  String sellerImageUrl = "";
 
   // voidとは
   // => returnがない事は決まってるから、わかりやすく印を付けとく
@@ -90,14 +94,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
           });
     } else {
       if (passwordController.text == confirmPasswordController.text) {
-        // 画像をアップロードする
+        if (passwordController.text.isNotEmpty &&
+            emailController.text.isNotEmpty &&
+            nameController.text.isNotEmpty &&
+            phoneController.text.isNotEmpty &&
+            locationController.text.isNotEmpty) {
+          showDialog(
+            context: context,
+            builder: (c) {
+              return const LoadingDialog(
+                message: '新規登録しています',
+              );
+            },
+          );
 
-        if (passwordController.text.isNotEmpty
-        && emailController.text.isNotEmpty
-        && nameController.text.isNotEmpty
-        && phoneController.text.isNotEmpty
-        && locationController.text.isNotEmpty) {
-          
+          // 画像をアップロードする
+          String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+          fStorage.Reference reference = fStorage.FirebaseStorage.instance
+              .ref()
+              .child('Sellers')
+              .child(fileName);
+          fStorage.UploadTask uploadTask =
+              reference.putFile(File(imageXFile!.path));
+          fStorage.TaskSnapshot taskSnapshot =
+              await uploadTask.whenComplete(() {});
+          await taskSnapshot.ref.getDownloadURL().then((url) {
+            sellerImageUrl = url;
+          });
+        } else {
+          return showDialog(
+              context: context,
+              builder: (c) {
+                return const ErrorDialog(
+                  message: 'すべての項目を記入してください。',
+                );
+              });
         }
       } else {
         showDialog(
